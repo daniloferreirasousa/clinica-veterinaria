@@ -16,7 +16,7 @@ return new class extends Migration
 
             // Chaves Estrangeiras
             $table->foreignId('animal_id')->constrained('animals')->cascadeOnDelete();
-            $table->foreignId('veterinaria_id')->constrained('users');
+            $table->foreignId('veterinarian_id')->constrained('users');
 
             // Dados do Agendamento e Atendimento
             $table->dateTime('date_time');
