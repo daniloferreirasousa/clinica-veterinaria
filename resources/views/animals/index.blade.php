@@ -45,7 +45,7 @@
                             <td class="text-end">
                                 <a href="{{ route('animals.show', $animal) }}" class="btn btn-sm btn-info text-white">Ver</a>
                                 <a href="{{ route('animals.edit', $animal) }}" class="btn btn-sm btn-warning">Editar</a>
-                                <form action="{{ route('animals.destroy', $animal) }}" method="POST" class="d-inline form-delete">
+                                <form action="{{ route('animals.destroy', $animal) }}" method="POST" class="d-inline form-delete" data-resource="este animal">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-sm btn-danger">Excluir</button>

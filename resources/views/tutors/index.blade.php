@@ -40,7 +40,7 @@
                             <td class="text-end">
                                 <a href="{{ route('tutors.show', $tutor) }}" class="btn btn-sm btn-info text-white">Ver</a>
                                 <a href="{{ route('tutors.edit', $tutor) }}" class="btn btn-sm btn-warning">Editar</a>
-                                <form action="{{ route('tutors.destroy', $tutor) }}" method="POST" class="d-inline form-delete">
+                                <form action="{{ route('tutors.destroy', $tutor) }}" method="POST" class="d-inline form-delete" data-resource="este tutor">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger">Excluir</button>

@@ -8,6 +8,8 @@ use App\Http\Controllers\TutorController;
 use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\SpecieController;
 use App\Http\Controllers\RaceController;
+use App\Http\Controllers\ConsultationController;
+use App\Http\Controllers\DropdownController;
 
 
 // Redirecionamentos da raiz
@@ -30,6 +32,12 @@ Route::middleware(['auth', 'user.active'])->group(function () {
     Route::get('/dashboard',  [DashboardController::class, 'index'])
         ->name('dashboard');
 
+    // Rotas para AJAX/Fetch API interna
+    Route::prefix('api-local')->group(function() {
+        Route::get('tutors/{tutor}/animals', [DropdownController::class, 'animalsByTutor'])->name('api.animals');
+        Route::get('species/{specie}/races', [DropdownController::class, 'racesBySpecie'])->name('api.races');
+    });
+
     // CRUD de usuários
     Route::middleware(['role:admin'])->group(function() {
         Route::resource('users', UserController::class)->parameters([
@@ -51,6 +59,10 @@ Route::middleware(['auth', 'user.active'])->group(function () {
 
     Route::resource('races', RaceController::class)->parameters([
         'races' => 'race'
+    ]);
+
+    Route::resource('consultations', ConsultationController::class)->parameters([
+        'consultations' => 'consultation'
     ]);
    
 });

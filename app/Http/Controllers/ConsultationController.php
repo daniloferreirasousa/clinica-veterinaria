@@ -16,7 +16,7 @@ class ConsultationController extends Controller
         $status = $request->get('status');
 
         // Busca otimizada usando eager loading encadeado: consulta -> animal -> tutor
-        $consultations = Consulta::with(['animal.tutor', 'animal.specie', 'veterinaria'])
+        $consultations = Consultation::with(['animal.tutor', 'animal.specie', 'veterinarian'])
             ->when($search, function ($query) use ($search) {
                 $q->where('name', 'like', "%{$search}%")
                 ->orWhereHas('tutor', fn($t) => $t->where('name', 'like', "%{$search}%"));
@@ -34,7 +34,8 @@ class ConsultationController extends Controller
     public function create()
     {
         $tutors = Tutor::orderBy('name', 'asc')->get();
-        $veterinarians = User::orderBy('name', 'asc')->get();
+        $veterinarians = User::where('role', 'veterinario')
+                ->orderBy('name', 'asc')->get();
 
         return view('consultations.create', compact('tutors', 'veterinarians'));
     }
@@ -50,7 +51,7 @@ class ConsultationController extends Controller
 
     public function show(Consultation $consultation)
     {
-        $consultation->load(['animal.tutor', 'animal.specie', 'animal.race', 'veterinaria']);
+        $consultation->load(['animal.tutor', 'animal.specie', 'animal.race', 'veterinarian']);
         return view('consultations.show', compact('consultation'));
     }
 

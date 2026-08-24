@@ -42,7 +42,7 @@
                             <td><span class="badge bg-info text-dark">{{ $race->animais_count }}</span></td>
                             <td class="text-end">
                                 <a href="{{ route('races.edit', $race) }}" class="btn btn-sm btn-warning">Editar</a>
-                                <form action="{{ route('races.destroy', $race) }}" method="POST" class="d-inline form-delete">
+                                <form action="{{ route('races.destroy', $race) }}" method="POST" class="d-inline form-delete" data-resource="esta raça">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-sm btn-danger">Excluir</button>

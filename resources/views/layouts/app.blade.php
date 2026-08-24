@@ -25,6 +25,12 @@
                     </li>
 
                     <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('consultations.*') ? 'active' : '' }}" href="{{ route('consultations.index') }}">
+                            <i class="bi bi-calendar-check"></i> Consultas
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('tutors.*') ? 'active' : '' }}" href="{{ route('tutors.index') }}">Tutores</a>
                     </li>
 
@@ -89,9 +95,10 @@
                 form.addEventListener('submit', function (e) {
                     e.preventDefault();
 
+                    const resource = form.dataset.resource || 'este registro';
                     Swal.fire({
                         title: 'Tem certeza?',
-                        text: 'Deseja excluir esse Tutor permanentemente?',
+                        text: `Deseja excluir ${resource} permanentemente?`,
                         icon: 'warning',
                         showCancelButton: true,
                         confirmButtonColor: '#dc3445',

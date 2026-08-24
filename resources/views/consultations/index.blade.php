@@ -56,14 +56,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse($sonsultations as $consu)  
+                            @forelse($consultations as $consul)  
                                 <tr>
-                                    <td class="fw-bold">{{ $consu->date_time->format('d/m/Y H:i') }}</td>
+                                    <td class="fw-bold">{{ $consul->date_time->format('d/m/Y H:i') }}</td>
                                     <td>
                                         <strong>{{ $consul->animal->name }}</strong>
-                                        <small class="text-muted">({{ $consu->animal-specie->name }})</small>
+                                        <small class="text-muted">({{ $consul->animal->specie->name }})</small>
                                         <br>
-                                        <small class="text-secondary">Tutor: {{ $consu->animal->tutor->name }}</small>
+                                        <small class="text-secondary">Tutor: {{ $consul->animal->tutor->name }}</small>
                                     </td>
                                     <td>{{ $consul->veterinarian->name }}</td>
                                     <td>{{ Str::limit($consul->reason, 30) }}</td>
@@ -87,7 +87,7 @@
                                     <td class="text-end">
                                         <a href="{{ route('consultations.show', $consul) }}" class="btn btn-sm btn-info text-white me-1">Ver</a>
                                         <a href="{{ route('consultations.edit', $consul) }}" class="btn btn-sm btn-warning me-1">Editar/Atender</a>
-                                        <form action="{{ route('consultations.destroy', $consul) }}" method="POST" class="d-inline form-delete">
+                                        <form action="{{ route('consultations.destroy', $consul) }}" method="POST" class="d-inline form-delete" data-resource="esta consulta">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger btn-delete">Excluir</button>
