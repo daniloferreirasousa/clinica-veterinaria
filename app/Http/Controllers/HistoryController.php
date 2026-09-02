@@ -59,7 +59,7 @@ class HistoryController extends Controller
                         'title' => 'Exame Clínico Anexado: ' . $exam->name,
                         'date_time' => Carbon::parse($exam->exam_date . ' 00:00:00' ),
                         'veterinarian' => 'Laboratório Interno',
-                        'dados' => $exam,
+                        'data' => $exam,
                     ]);
                 }
             }
@@ -76,7 +76,7 @@ class HistoryController extends Controller
                         'title' => 'Vacina Aplicada: ' . $vax->name,
                         'date_time' => Carbon::parse($vax->application_date . ' 00:00:00'),
                         'veterinarian' => $vax->veterinarian->name ?? 'N/A',
-                        'dados' => $vax,
+                        'data' => $vax,
                     ]);
                 }
             }
@@ -93,7 +93,7 @@ class HistoryController extends Controller
                         'title' => 'Emissão de Receituário Médico',
                         'date_time' => Carbon::parse($prescription->date . ' 00:00:00'),
                         'veterinarian' => $prescription->veterinarian->name ?? 'N/A',
-                        'dados' => $prescription,
+                        'data' => $prescription,
                     ]);
                 }
             }

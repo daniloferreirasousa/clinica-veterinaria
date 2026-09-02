@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('animal_id')->constrained('animals')->cascadeOnDelete();
             $table->foreignId('veterinarian_id')->constrained('users');
-            $table->foreignId('consutation_id')->nullable()->constrained('consultations')->nullOnDelete();
+            $table->foreignId('consultation_id')->nullable()->constrained('consultations')->nullOnDelete();
             $table->date('date');
             $table->text('observations')->nullable();
             $table->timestamps();

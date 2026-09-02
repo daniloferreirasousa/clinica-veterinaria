@@ -58,7 +58,7 @@ class ConsultationController extends Controller
             'animal.specie',
             'animal.race',
             'veterinarian',
-            'receitas.itens'
+            'prescriptions.items'
         ]);
 
         return view('consultations.show', compact('consultation'));

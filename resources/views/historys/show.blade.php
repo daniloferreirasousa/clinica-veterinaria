@@ -63,7 +63,7 @@
                                     <div>
                                         @if($event['type'] === 'consulta')
                                             <span class="badge bg-primary px-2 py-1">Consulta</span>
-                                        @elseif($event['type' === 'exame'])
+                                        @elseif($event['type'] === 'exame')
                                             <span class="badge bg-info text-dark px-2 py-1">Exame</span>
                                         @elseif($event['type'] === 'vacina')
                                             <span class="badge bg-success px-2 py-1">Vacinação</span>

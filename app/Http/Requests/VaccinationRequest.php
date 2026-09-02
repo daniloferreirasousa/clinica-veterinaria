@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class VaccinationRequest extends FormRequest
@@ -12,7 +11,7 @@ class VaccinationRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return auth()->check();
     }
 
     /**
@@ -23,7 +22,13 @@ class VaccinationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'animal_id'         => ['required', 'exists:animals,id'],
+            'name'              => ['required', 'string', 'max:255'],
+            'application_date'  => ['required', 'date'],
+            'next_dose_date'    => ['nullable', 'date'],
+            'batch'             => ['nullable', 'string', 'max:255'],
+            'manufacturer'      => ['nullable', 'string', 'max:255'],
+            'observations'      => ['nullable', 'string']
         ];
     }
 }
