@@ -13,9 +13,9 @@
                     <label for="specie_id" class="form-label">Espécie <span class="text-danger">*</span></label>
                     <select name="specie_id" id="specie_id" class="form-select @error('specie_id') is-invalid @enderror" required>
                         <option value="">-- Selecione a Espécie --</option>
-                        @foreach($especies as $especie)
-                            <option value="{{ $especie->id }}" {{ old('specie_id', $raca->specie_id) == $especie->id ? 'selected' : '' }}>
-                                {{ $especie->name }}
+                        @foreach($species as $specie)
+                            <option value="{{ $specie->id }}" {{ old('specie_id', $race->specie_id) == $specie->id ? 'selected' : '' }}>
+                                {{ $specie->name }}
                             </option>
                         @endforeach
                     </select>
@@ -26,7 +26,7 @@
 
                 <div class="mb-3">
                     <label for="name" class="form-label">name da Raça <span class="text-danger">*</span></label>
-                    <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $raca->name) }}" required>
+                    <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $race->name) }}" required>
                     @error('name')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror

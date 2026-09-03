@@ -23,7 +23,10 @@ class PrescriptionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            
+                'animal_id'       => ['required', 'exists:animals,id'],
+                'consultation_id' => ['nullable', 'exists:consutations,id'],
+                'date'            => ['required', 'date'],
+                'observations'    => ['nullable', 'string'],
         ];
     }
 }

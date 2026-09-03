@@ -71,7 +71,7 @@
             <div class="card shadow mb-4">
                 <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
                     <h5 class="card-title mb-0">Receitas Médicas Emitidas</h5>
-                    <a href="{{ route('receitas.create', ['animal' => $consultation->animal->id, 'consulta_id' => $consultation->id]) }}" class="btn btn-sm btn-light text-success fw-bold">
+                    <a href="{{ route('prescriptions.create', ['animal' => $consultation->animal->id, 'consultation_id' => $consultation->id]) }}" class="btn btn-sm btn-light text-success fw-bold">
                         + Emitir Nova Receita
                     </a>
                 </div>

@@ -39,6 +39,6 @@ class Consultation extends Model
 
     public function prescriptions(): HasMany
     {
-        return $this->hasMany(Prescription::class, 'consulta_id');
+        return $this->hasMany(Prescription::class, 'consultation_id');
     }
 }
