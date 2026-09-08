@@ -15,15 +15,15 @@ class AnimalResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id'        => $this->id,
-            'tutor_id'  => $this->tutor_id,
-            'name'      => $this->name,
-            'specie'    => $this->specie->name ?? null,
-            'race'      => $this->race->name ?? null,
-            'gender'    => $this->gender,
+            'id'            => $this->id,
+            'tutor_id'      => $this->tutor_id,
+            'name'          => $this->name,
+            'specie'        => $this->specie->name ?? null,
+            'race'          => $this->race->name ?? null,
+            'gender'        => $this->gender,
             'birth_date'    => $this->birth_date,
-            'weight'    => $this->weight,
-            'observations' => $this->observations,
+            'weight'        => $this->weight,
+            'observations'  => $this->observations,
         ];
     }
 }
