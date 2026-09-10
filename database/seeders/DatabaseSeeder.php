@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             SpecieRaceSeeder::class,
+            SpecieSeeder::class,
             TutorSeeder::class,
             AnimalSeeder::class,
         ]);
