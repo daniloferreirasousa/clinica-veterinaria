@@ -48,32 +48,37 @@ class AnimalController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Animal $animal)
     {
-        //
-    }
+        $animal->load(['tutor', 'specie', 'race']);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
+        return response()->json([
+            $animal
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(AnimalRequest $request, Animal $animal)
     {
-        //
+        $animal->update($request->validated());
+
+        return response()->json([
+            $animal,
+            'success' => "Dados do animal atualizados com sucesso!"
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Animal $animal)
     {
-        //
+        $animal->delete();
+
+        return response()->json([
+            'success' => 'Animal removido com sucesso!'
+        ]);
     }
 }
