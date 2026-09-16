@@ -26,7 +26,7 @@ class AnimalController extends Controller
                     ->orWhereHas('tutor', fn($q) => $q->where('name', 'like', "%{$search}%"));
             })
             ->orderBy('name', 'asc')
-            ->paginate(10)
+            ->paginate(20)
             ->withQueryString();
 
         return view('animals.index', compact('animals', 'search'));
