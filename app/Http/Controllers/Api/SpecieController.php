@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
-use App\Models\Specie;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\SpecieRequest;
+use App\Models\Specie;
+use Illuminate\Http\Request;
 
 class SpecieController extends Controller
 {
@@ -21,15 +22,10 @@ class SpecieController extends Controller
             ->paginate(10)
             ->withQueryString();
 
-        return view('species.index', compact('species', 'search'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('species.create');
+        return response()->json([
+            'search' => $search,
+            'species' => $species
+        ]);
     }
 
     /**
@@ -39,18 +35,11 @@ class SpecieController extends Controller
     {
         Specie::create($request->validated());
 
-        return redirect()
-            ->route('species.index')
-            ->with('success', 'Espécie cadastrada com sucesso!');
+        return response()->json([
+            'success' => 'Espécie criada com sucesso!'
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Specie $specie)
-    {
-        return view('species.edit', compact('specie'));
-    }
 
     /**
      * Update the specified resource in storage.
@@ -59,9 +48,10 @@ class SpecieController extends Controller
     {
         $specie->update($request->validated());
 
-        return redirect()
-            ->route('species.index')
-            ->with('success', 'Espécie atualizada com sucesso!');
+        return response()->json([
+            $specie,
+            'success' => 'Specie atualizada com sucesso!',
+        ]);
     }
 
     /**
@@ -69,15 +59,15 @@ class SpecieController extends Controller
      */
     public function destroy(Specie $specie)
     {
-        if ($specie->animals()->exists()) {
+         if ($specie->animals()->exists()) {
             return back()
                 ->with('error', 'Não é possível exluir uma espécie que possúi animais associados.');
         }
 
         $specie->delete();
 
-        return redirect()
-            ->route('species.index')
-            ->with('success', 'Espécie removida com sucesso!');
+        return response()->json([
+            'success' => 'Espécie removida copm sucesso!',
+        ]);
     }
 }
